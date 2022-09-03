@@ -2,10 +2,13 @@ const path = require('path');
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
+console.log(process.env.NODE_ENV)
+console.log(__dirname+'/../config/config.js')
+const config= require(__dirname + '/../config/config.js')[env]
+// const config2= require(__dirname + '/../config/config.js')
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize('mysql://' + config.USER_NAME + ':' + config.PASSWORD + '@' + config.HOST + ':' + config.PORT + '/' + config.DATABASE);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
